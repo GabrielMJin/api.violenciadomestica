@@ -14,8 +14,8 @@ export class DadosService {
     return dado.save();
   }
 
-  findAll() {
-    return this.dadoModel.find();
+  findAll(options) {
+    return this.dadoModel.find().sort({ _id: 1 });
   }
 
   findOne(id: string) {

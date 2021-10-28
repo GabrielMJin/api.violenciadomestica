@@ -6,7 +6,9 @@ import {
   Patch,
   Param,
   Delete,
+  Req,
 } from '@nestjs/common';
+import { Request } from 'express';
 import { DadosService } from './dados.service';
 import { CreateDadoDto } from './dto/create-dado.dto';
 import { UpdateDadoDto } from './dto/update-dado.dto';
@@ -21,8 +23,22 @@ export class DadosController {
   }
 
   @Get()
-  findAll() {
-    return this.dadosService.findAll();
+  async findAll(@Req() req: Request) {
+    const options = {};
+
+    const query = this.dadosService.findAll({});
+
+    const page: number = parseInt(req.query.page as any) || 1;
+    const limit = 9;
+
+    const data = await query
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .exec();
+
+    return {
+      data,
+    };
   }
 
   @Get(':id')

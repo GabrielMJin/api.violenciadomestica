@@ -5,7 +5,7 @@ import { DadosModule } from './dados/dados.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb+srv://sirjinluffy:biebie08@ativ2.pjk5x.mongodb.net/test',
+      'mongodb+srv://sirjinluffy:A9d8z1fTEidZkrYs@ativ2.pjk5x.mongodb.net/test',
     ),
     DadosModule,
   ],
